@@ -23,21 +23,19 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor:'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
+      backgroundColor: "white",
+      font: "inherit",
+      border: "1px solid blue",
+      padding: "8px",
+      cursor: "pointer"
     };
-    
+
     return (
       <div className="App">
         <h1>Hi, I'm a React app!</h1>
         <p>This is really working!</p>
         {/*  arrow function can be inefficient */}
-        <button
-        style={style}
-        onClick={() => this.switchNameHandler("Pooter")}>
+        <button style={style} onClick={() => this.switchNameHandler("Pooter")}>
           Switch Name
         </button>
         <Person
@@ -47,10 +45,11 @@ class App extends Component {
         >
           My Hobbies: Eating
         </Person>
-        <Person 
+        <Person
           name={this.state.cats[1].name}
           age={this.state.cats[1].age}
-          changed={this.nameChangedHandler}/>
+          changed={this.nameChangedHandler}
+        />
       </div>
     );
   }

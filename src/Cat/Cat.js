@@ -1,5 +1,6 @@
 import React from "react";
 import "./Cat.css";
+import Radium from "radium";
 
 const cat = props => {
   return (
@@ -13,4 +14,4 @@ const cat = props => {
   );
 };
 
-export default cat;
+export default Radium(cat);

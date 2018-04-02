@@ -36,16 +36,8 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: "green",
-      color: "white",
-      font: "inherit",
-      border: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer"
-    };
-
     let cats = null;
+    let btnClass = '';
 
     if (this.state.showCats) {
       cats = (
@@ -63,7 +55,7 @@ class App extends Component {
           })}
         </div>
       );
-      style.backgroundColor = "red";
+      btnClass = classes.Red;
     }
 
     const assignedClasses = [];
@@ -79,7 +71,7 @@ class App extends Component {
         <h1>Hi, I'm a React app!</h1>
         <p className={assignedClasses.join(" ")}>This is really working!</p>
         {/*  arrow function can be inefficient */}
-        <button style={style} onClick={this.toggleCatsHandler}>
+        <button className={btnClass} onClick={this.toggleCatsHandler}>
           Show Names
         </button>
         {cats}

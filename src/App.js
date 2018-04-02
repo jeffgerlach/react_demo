@@ -37,27 +37,32 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: "white",
+      backgroundColor: "green",
+      color: "white",
       font: "inherit",
       border: "1px solid blue",
       padding: "8px",
       cursor: "pointer"
     };
-    const cats = (
-      <div>
-        {this.state.cats.map((cat, index) => {
-          return (
-            <Cat
-              key={cat.id}
-              click={() => this.deleteCatHandler(index)}
-              name={cat.name}
-              age={cat.age}
-              changed={event => this.nameChangedHandler(event, cat.id)}
-            />
-          );
-        })}
-      </div>
-    );
+    let cats = null;
+    if (this.state.showCats) {
+      cats = (
+        <div>
+          {this.state.cats.map((cat, index) => {
+            return (
+              <Cat
+                key={cat.id}
+                click={() => this.deleteCatHandler(index)}
+                name={cat.name}
+                age={cat.age}
+                changed={event => this.nameChangedHandler(event, cat.id)}
+              />
+            );
+          })}
+        </div>
+      );
+      style.backgroundColor = "red";
+    }
 
     return (
       <div className="App">
@@ -67,7 +72,7 @@ class App extends Component {
         <button style={style} onClick={this.toggleCatsHandler}>
           Show Names
         </button>
-        {this.state.showCats && cats}
+        {cats}
       </div>
     );
   }

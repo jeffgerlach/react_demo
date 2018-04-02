@@ -1,32 +1,39 @@
 import React, { Component } from "react";
 import "./App.css";
-import Person from "./Person/Person";
-import person from "./Person/Person";
+import Cat from "./Cat/Cat";
 
 class App extends Component {
   state = {
-    cats: [{ name: "Sox", age: 10 }, { name: "Babby", age: 1 }],
+    cats: [{ id: 0, name: "Sox", age: 10 }, { id: 1, name: "Babby", age: 1 }],
     otherState: "some other value",
-    showPersons: false
+    showCats: false
   };
 
-  switchNameHandler = newName => {
-    // console.log('Was clicked!');
-    this.setState({
-      cats: [{ name: newName, age: 10 }, { name: "Babby", age: 1.5 }]
+  nameChangedHandler = (event, id) => {
+    const catIndex = this.state.cats.findIndex(p=> {
+      return p.id === id;
     });
+    const cat = {
+      ...this.state.cats[catIndex]
+    };
+    cat.name = event.target.value;
+    const cats = [...this.state.cats];
+    cats[catIndex] = cat;
+
+    this.setState({cats});
   };
 
-  nameChangedHandler = event => {
-    this.setState({
-      cats: [{ name: "Sox", age: 10 }, { name: event.target.value, age: 1 }]
-    });
+  deleteCatHandler = catIndex => {
+    // const cats = this.state.cats.slice();
+    const cats = [...this.state.cats];
+    cats.splice(catIndex, 1);
+    this.setState({ cats });
   };
 
-  togglePersonsHandler = () => {
-    const doesShow = this.state.showPersons;
-    this.setState({showPersons: !doesShow});
-  }
+  toggleCatsHandler = () => {
+    const doesShow = this.state.showCats;
+    this.setState({ showCats: !doesShow });
+  };
 
   render() {
     const style = {
@@ -36,21 +43,20 @@ class App extends Component {
       padding: "8px",
       cursor: "pointer"
     };
-    const persons = (
+    const cats = (
       <div>
-          <Person
-            name={this.state.cats[0].name}
-            age={this.state.cats[0].age}
-            click={this.switchNameHandler.bind(this, "Sox!")}
-          >
-            My Hobbies: Eating
-          </Person>
-          <Person
-            name={this.state.cats[1].name}
-            age={this.state.cats[1].age}
-            changed={this.nameChangedHandler}
-          />
-        </div>
+        {this.state.cats.map((cat, index) => {
+          return (
+            <Cat
+              key={cat.id}
+              click={() => this.deleteCatHandler(index)}
+              name={cat.name}
+              age={cat.age}
+              changed={event => this.nameChangedHandler(event, cat.id)}
+            />
+          );
+        })}
+      </div>
     );
 
     return (
@@ -58,10 +64,10 @@ class App extends Component {
         <h1>Hi, I'm a React app!</h1>
         <p>This is really working!</p>
         {/*  arrow function can be inefficient */}
-        <button style={style} onClick={this.togglePersonsHandler}>
+        <button style={style} onClick={this.toggleCatsHandler}>
           Show Names
         </button>
-        { this.state.showPersons && persons }
+        {this.state.showCats && cats}
       </div>
     );
   }

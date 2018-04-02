@@ -1,7 +1,7 @@
 import React from "react";
-import "./Person.css";
+import "./Cat.css";
 
-const person = props => {
+const cat = props => {
   return (
     <div className="Person">
       <p onClick={props.click}>
@@ -13,4 +13,4 @@ const person = props => {
   );
 };
 
-export default person;
+export default cat;

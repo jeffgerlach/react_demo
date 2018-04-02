@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Cat from "./Cat/Cat";
-import Radium from "radium";
+import Radium, { StyleRoot } from "radium";
 
 class App extends Component {
   state = {
@@ -44,9 +44,9 @@ class App extends Component {
       border: "1px solid blue",
       padding: "8px",
       cursor: "pointer",
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
+      ":hover": {
+        backgroundColor: "lightgreen",
+        color: "black"
       }
     };
     let cats = null;
@@ -67,30 +67,32 @@ class App extends Component {
         </div>
       );
       style.backgroundColor = "red";
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
+      style[":hover"] = {
+        backgroundColor: "salmon",
+        color: "black"
+      };
     }
 
     const classes = [];
-    if (this.state.cats.length <=2) {
-      classes.push('red');
+    if (this.state.cats.length <= 2) {
+      classes.push("red");
     }
-    if (this.state.cats.length <=1) {
-      classes.push('bold');
+    if (this.state.cats.length <= 1) {
+      classes.push("bold");
     }
 
     return (
-      <div className="App">
-        <h1>Hi, I'm a React app!</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
-        {/*  arrow function can be inefficient */}
-        <button style={style} onClick={this.toggleCatsHandler}>
-          Show Names
-        </button>
-        {cats}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi, I'm a React app!</h1>
+          <p className={classes.join(" ")}>This is really working!</p>
+          {/*  arrow function can be inefficient */}
+          <button style={style} onClick={this.toggleCatsHandler}>
+            Show Names
+          </button>
+          {cats}
+        </div>
+      </StyleRoot>
     );
   }
 }

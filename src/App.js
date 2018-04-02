@@ -10,7 +10,7 @@ class App extends Component {
   };
 
   nameChangedHandler = (event, id) => {
-    const catIndex = this.state.cats.findIndex(p=> {
+    const catIndex = this.state.cats.findIndex(p => {
       return p.id === id;
     });
     const cat = {
@@ -20,7 +20,7 @@ class App extends Component {
     const cats = [...this.state.cats];
     cats[catIndex] = cat;
 
-    this.setState({cats});
+    this.setState({ cats });
   };
 
   deleteCatHandler = catIndex => {

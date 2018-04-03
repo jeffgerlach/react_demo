@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import classes from "./App.css";
-import Cat from "./Cat/Cat";
+import Cat from "../components/Cats/Cat/Cat";
 
 class App extends Component {
   state = {

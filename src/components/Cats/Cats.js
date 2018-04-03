@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import Cat from "./Cat/Cat";
 
-class Cats extends Component {
+class Cats extends PureComponent {
   constructor(props) {
     super(props);
     console.log("[Cats.js] inside constructor", props);
@@ -19,14 +19,18 @@ class Cats extends Component {
     console.log("[UPDATE Cats.js] inside componentWillReceiveProps", nextProps);
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log(
-      "[UPDATE Cats.js] inside shouldComponentUpdate",
-      nextProps,
-      nextState
-    );
-    return nextProps.cats !== this.props.cats;
-  }
+  // built into PureComponent:
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log(
+  //     "[UPDATE Cats.js] inside shouldComponentUpdate",
+  //     nextProps,
+  //     nextState
+  //   );
+  //   return nextProps.cats !== this.props.cats ||
+  //     nextProps.changed !== this.props.changed ||
+  //     nextProps.clicked !== this.props.clicked;
+  //   // return true;
+  // }
 
   componentWillUpdate(nextProps, nextState) {
     console.log(

@@ -16,7 +16,9 @@ class App extends Component {
     const cat = {
       ...this.state.cats[catIndex]
     };
+
     cat.name = event.target.value;
+
     const cats = [...this.state.cats];
     cats[catIndex] = cat;
 
@@ -37,7 +39,7 @@ class App extends Component {
 
   render() {
     let cats = null;
-    let btnClass = '';
+    let btnClass = "";
 
     if (this.state.showCats) {
       cats = (

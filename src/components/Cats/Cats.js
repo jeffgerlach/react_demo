@@ -15,6 +15,31 @@ class Cats extends Component {
     console.log("[Cats.js] inside componentDidMount()");
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log("[UPDATE Cats.js] inside componentWillReceiveProps", nextProps);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(
+      "[UPDATE Cats.js] inside shouldComponentUpdate",
+      nextProps,
+      nextState
+    );
+    return nextProps.cats !== this.props.cats;
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log(
+      "[UPDATE Cats.js] inside componentWillUpdate",
+      nextProps,
+      nextState
+    );
+  }
+
+  componentDidUpdate() {
+    console.log("[UPDATE Cats.js] inside componentDidUpdate()");
+  }
+
   render() {
     console.log("[Cats.js] inside render()");
     return this.props.cats.map((cat, index) => {

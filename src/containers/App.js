@@ -4,11 +4,30 @@ import Cockpit from "../components/Cockpit/Cockpit";
 import Cats from "../components/Cats/Cats";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log("[App.js] inside constructor", props);
+    // old way of setting state:
+    // this.state = {
+    //   cats: [{ id: 0, name: "Sox", age: 10 }, { id: 1, name: "Babby", age: 1 }],
+    //   otherState: "some other value",
+    //   showCats: false
+    // };
+  }
+
   state = {
     cats: [{ id: 0, name: "Sox", age: 10 }, { id: 1, name: "Babby", age: 1 }],
     otherState: "some other value",
     showCats: false
   };
+
+  componentWillMount() {
+    console.log("[App.js] inside componentWillMount()");
+  }
+
+  componentDidMount() {
+    console.log("[App.js] inside componentDidMount()");
+  }
 
   nameChangedHandler = (event, id) => {
     const catIndex = this.state.cats.findIndex(p => {
@@ -39,6 +58,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("[App.js] inside render()");
     let cats = null;
 
     if (this.state.showCats) {

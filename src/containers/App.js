@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import classes from "./App.css";
-import Cat from "../components/Cats/Cat/Cat";
+import Cockpit from "../components/Cockpit/Cockpit";
+import Cats from "../components/Cats/Cats";
 
 class App extends Component {
   state = {
@@ -39,43 +40,24 @@ class App extends Component {
 
   render() {
     let cats = null;
-    let btnClass = "";
 
     if (this.state.showCats) {
       cats = (
-        <div>
-          {this.state.cats.map((cat, index) => {
-            return (
-              <Cat
-                key={cat.id}
-                click={() => this.deleteCatHandler(index)}
-                name={cat.name}
-                age={cat.age}
-                changed={event => this.nameChangedHandler(event, cat.id)}
-              />
-            );
-          })}
-        </div>
+        <Cats
+          cats={this.state.cats}
+          clicked={this.deleteCatHandler}
+          changed={this.nameChangedHandler}
+        />
       );
-      btnClass = classes.Red;
-    }
-
-    const assignedClasses = [];
-    if (this.state.cats.length <= 2) {
-      assignedClasses.push(classes.red);
-    }
-    if (this.state.cats.length <= 1) {
-      assignedClasses.push(classes.bold);
     }
 
     return (
       <div className={classes.App}>
-        <h1>Hi, I'm a React app!</h1>
-        <p className={assignedClasses.join(" ")}>This is really working!</p>
-        {/*  arrow function can be inefficient */}
-        <button className={btnClass} onClick={this.toggleCatsHandler}>
-          Show Names
-        </button>
+        <Cockpit
+          cats={this.state.cats}
+          showCats={this.state.showCats}
+          clicked={this.toggleCatsHandler}
+        />
         {cats}
       </div>
     );
